@@ -1,0 +1,313 @@
+// Java program to demonstrate how exception is thrown. 
+class Sample{ 
+      
+    public static void main(String args[])
+    { 
+          
+        String str = jspm; 
+        System.out.println(str.length()); 
+	        
+     } 
+}
+
+
+class StringIndexOutOfBound
+{
+    public static void main(String args[])
+    {
+        try {
+            String a = "This is like chipping "; // length is 22
+            char c = a.charAt(24); // accessing 25th element
+            System.out.println(c);
+        }
+        catch(StringIndexOutOfBoundsException e) {
+            System.out.println("StringIndexOutOfBoundsException");
+        }
+    }
+}
+
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+ class File_notFound_Demo {
+ 
+    public static void main(String args[])  {
+        try {
+ 
+            // Following file does not exist
+            File file = new File("E://file.txt");
+ 
+            FileReader fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+           System.out.println("File does not exist");
+        }
+    }
+}
+
+
+class ArrayIndexOutOfBound_Demo
+{
+    public static void main(String args[])
+    {
+        try{
+            int a[] = new int[5];
+            a[6] = 9; // accessing 7th element in an array of
+                      // size 5
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println ("Array Index is Out Of Bounds");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Java finally block
+
+finally block is always executed
+for each try block, there can be only one finally block.
+finally block is optional
+
+try {
+  //code
+}
+catch (ExceptionType1 e1) { 
+  // catch block
+}
+finally {
+  // finally block always executes
+}
+
+
+class Main {
+  public static void main(String[] args) {
+    try {
+      // code that generates exception
+      int divideByZero = 5 / 0;
+    }
+
+    catch (ArithmeticException e) {
+      System.out.println("ArithmeticException => " + e.getMessage());
+    }
+    
+    finally {
+      System.out.println("This is the finally block");
+    }
+  }
+}
+
+
+throw and throws keyword
+
+class Main {
+  public static void divideByZero() {
+
+    // throw an exception
+    throw new ArithmeticException("Trying to divide by 0");
+  }
+
+  public static void main(String[] args) {
+    divideByZero();
+  }
+}
+
+
+throw keyword is used to explicitly throw a single exception.
+
+Similarly, the throws keyword is used to declare the type of exceptions that might occur within the method. 
+It is used in the method declaration.
+
+
+import java.io.*;
+
+class Main {
+  // declareing the type of exception
+  public static void findFile() throws IOException {
+
+    // code that may generate IOException
+    File newFile = new File("test.txt");
+    FileInputStream stream = new FileInputStream(newFile);
+  }
+
+  public static void main(String[] args) {
+    try {
+      findFile();
+    }
+    catch (IOException e) {
+      System.out.println(e);
+    }
+  }
+}
+
+import java.util.*;
+class Typec {
+  public static void main(String args[])
+  {
+	  int n;
+	 try{ 
+	Scanner in=new Scanner(System.in);
+	
+	System.out.println("Enter");
+	n=Integer.parseInt(in.next());
+	
+	System.out.println(n);
+	}
+	catch(NumberFormatException e)
+	{
+		System.out.println(e);
+	}
+  }
+}
+
+
+
+
+
+
+
+ArithmeticException
+It is thrown when an exceptional condition has occurred in an arithmetic operation.
+
+ArrayIndexOutOfBoundsException 
+It is thrown to indicate that an array has been accessed with an illegal index. The index is either negative or greater than or equal to the size of the array.
+
+ClassNotFoundException 
+This Exception is raised when we try to access a class whose definition is not found
+
+FileNotFoundException 
+This Exception is raised when a file is not accessible or does not open.
+
+IOException 
+It is thrown when an input-output operation failed or interrupted
+
+InterruptedException 
+It is thrown when a thread is waiting , sleeping , or doing some processing , and it is interrupted.
+
+NoSuchFieldException 
+It is thrown when a class does not contain the field (or variable) specified
+
+NoSuchMethodException 
+It is thrown when accessing a method which is not found.
+
+NullPointerException 
+This exception is raised when referring to the members of a null object. Null represents nothing
+
+NumberFormatException 
+This exception is raised when a method could not convert a string into a numeric format.
+
+RuntimeException 
+This represents any exception which occurs during runtime.
+
+StringIndexOutOfBoundsException 
+It is thrown by String class methods to indicate that an index is either negative or greater than the size of the string
+
+
+
+
+User-Defined Exceptions
+
+
+class MyException extends Exception
+
+
+
+
+class MyException extends Exception
+{
+    //store account information
+    private static int accno[] = {1001, 1002, 1003, 1004};
+ 
+    private static String name[] =
+                 {"Nish", "Shubh", "Sush", "Abhi", "Akash"};
+ 
+    private static double bal[] =
+         {10000.00, 12000.00, 5600.0, 999.00, 1100.55};
+ 
+    // default constructor
+    MyException() {    }
+ 
+    // parametrized constructor
+    MyException(String str) { super(str); }
+ 
+    // write main()
+    public static void main(String[] args)
+    {
+        try  {
+            // display the heading for the table
+            System.out.println("ACCNO" + "\t" + "CUSTOMER" +
+                                           "\t" + "BALANCE");
+ 
+            // display the actual account information
+            for (int i = 0; i < 5 ; i++)
+            {
+                System.out.println(accno[i] + "\t" + name[i] +
+                                               "\t" + bal[i]);
+ 
+                // display own exception if balance < 1000
+                if (bal[i] < 1000)
+                {
+                    MyException me =
+                       new MyException("Balance is less than 1000");
+                    throw me;
+                }
+            }
+        } //end of try
+ 
+        catch (MyException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+public class Student extends RuntimeException {
+   private String name;
+   private int age;
+   public Student(String name, int age){
+      try {
+         if (age<17||age>24) {
+            String msg = "Age is not between 17 and 24";
+            AgeDoesnotMatchException ex = new AgeDoesnotMatchException(msg);
+            throw ex;
+         }
+      }
+      catch(AgeDoesnotMatchException e) {
+         e.printStackTrace();
+      }
+      this.name = name;
+      this.age = age;
+   }  
+   public void display(){
+      System.out.println("Name of the Student: "+this.name );
+      System.out.println("Age of the Student: "+this.age );
+   }
+   public static void main(String args[]) {
+      Scanner sc= new Scanner(System.in);
+      System.out.println("Enter the name of the Student: ");
+      String name = sc.next();
+      System.out.println("Enter the age of the Student should be 17 to 24
+      (including 17 and 24): ");
+      int age = sc.nextInt();
+      Student obj = new Student(name, age);
+      obj.display();
+   }
+}
+
+
+

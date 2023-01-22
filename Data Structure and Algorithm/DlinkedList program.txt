@@ -1,0 +1,55 @@
+class Node{
+    constructor(data,next=null,prev=null){
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+
+    }
+}
+class DLinkedList{
+    constructor(){
+        this.head=null;
+        
+        
+      }
+    add(data)
+    {
+        var newNode =new Node(data);
+        var temp;             
+                               
+           if (this.head==null){
+             //newNode.prev=null;  
+            this.head=newNode;
+            }
+            else{
+                temp=this.head;
+                while(temp.next)
+                {
+                    temp=temp.next;
+                }
+    
+         // add node 
+    
+                temp.next=newNode;
+                newNode.prev=temp;
+    
+            }
+            
+    }
+Print(){
+    var temp=this.head;
+                var str=" ";
+                while(temp){
+                    str +=temp.data +" ";
+                    temp=temp.next;
+                }
+                console.log(str);
+
+}
+    }
+//const n1=new Node(100);
+//console.log(n1);
+const dl=new DLinkedList();
+dl.add(100);
+dl.add(200);
+dl.Print();
